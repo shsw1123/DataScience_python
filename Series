@@ -1,0 +1,32 @@
+import pandas as pd
+import numpy as np
+#s1 = pd.Series([10,20,30,40,50])
+#s1.drop(index=0,inplace=True) #False cancel drop
+#print(s1)
+# Dataframe.head or .tail
+my_df = np.array([["Player1","ABC","256"],
+                  ["player2","Sky",320],
+                  ["Player3","ABC",185],
+                  ["Player4","Sky",225],
+                  ["Player5","Rotation",333],
+                  ["player6","MomoMama",210]])
+df = pd.DataFrame(data=my_df,
+                  columns=["Player name","Team name","Score"],
+                  index=["A","B","C","D","E","F"])
+print(df.head())
+print(df.head(2))
+print(df.tail())
+# .at["name row","name column")   .iat[ลำดับ row,ลำดับ column]
+print(df.at["A","Player name"])
+print(df.iat[0,1])
+# .loc[["name row 1",...],["name column 1",...]]    .iloc[[ลำดับ row 1,...],[ลำดับ column,...]]
+print(df.loc[["A","E"],["Player name"]])
+print(df.loc[:,["Player name"]])
+print(df.iloc[[0,5],[0,1]])
+print(df.iloc[:,[0,1]])
+print(df.loc["E"])
+print(df.loc["A":"E",:])
+# Condition
+print(df.loc[df["Team name"]=="Sky"]) #ค้นหาแถวที่มีชื่อทีม sky
+print(df.loc[ (df["Team name"]=="Sky") | (df["Team name"]=="ABC") ])
+print(df.loc[pd.to_numeric(df["Score"])>250]) # Find team that score above 250
